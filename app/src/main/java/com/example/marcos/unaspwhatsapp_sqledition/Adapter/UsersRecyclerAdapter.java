@@ -63,7 +63,9 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
             textViewPassword = view.findViewById(R.id.textViewPassword);
         }
     }
-
+    public void clear() {
+        listUsers.clear();
+    }
 
 }
 

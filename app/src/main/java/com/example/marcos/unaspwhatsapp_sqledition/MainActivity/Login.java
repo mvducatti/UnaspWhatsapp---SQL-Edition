@@ -9,7 +9,9 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import com.example.marcos.unaspwhatsapp_sqledition.UserSession;
 import com.example.marcos.unaspwhatsapp_sqledition.UsuarioLogado;
 
 import java.sql.ResultSet;
+import java.util.HashMap;
 
 import javax.security.auth.login.LoginException;
 
@@ -48,13 +51,14 @@ public class Login extends AppCompatActivity {
 
         // User Session Manager
         session = new UserSession(getApplicationContext());
-        session.checkLogin();
 
         Toast.makeText(getApplicationContext(),
                 "User Login Status: " + session.isUserLoggedIn(),
                 Toast.LENGTH_LONG).show();
 
         sharedPreferences = getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE);
+
+
     }
 
     public void alert(String titulo, String txt){
@@ -77,8 +81,8 @@ public class Login extends AppCompatActivity {
             String testeemail = editEmail.getText().toString();
             String testesenha = editSenha.getText().toString();
 
-            String uName = null;
-            String uPassword =null;
+            String uName,uEmail = null;
+            int uIdUser;
 
             rs = DB.execute("SELECT * FROM newuser WHERE user_email = '" + testeemail + "' AND user_password = '" + testesenha + "'");
             while (rs.next()){
@@ -88,21 +92,29 @@ public class Login extends AppCompatActivity {
                 if (email.equals(testeemail)){
                     if (senha.equals(testesenha)){
 
-                        uName = sharedPreferences.getString("Name", "");
-                        uPassword = sharedPreferences.getString("txtPassword", "");
 
-                        session.createUserLoginSession(uName, uPassword);
+
+                        String nome = rs.getString("user_name");
+                        int idUser = Integer.parseInt(rs.getString("user_id"));
+
+                        session.createUserLoginSession(nome, email, idUser);
+
+                        HashMap<String, String> alciomar = session.getUserDetails();
+
+                        uName = sharedPreferences.getString("Name", "");
+                        uEmail = sharedPreferences.getString("Email", "");
+                        uIdUser = sharedPreferences.getInt("IdUser", 0);
+
+                        Log.i("alciomar","ads");
 
                         Intent intent = new Intent(Login.this, MainActivity.class);
 
-//                        User user = new User();
-//                        user.setId(Integer.parseInt(rs.getString("user_id")));
-//                        user.setName(rs.getString("user_name"));
-//                        user.setEmail(email);
-//                        user.setPassword(senha);
-//                        UsuarioLogado.verifyUser(user);
-
-
+                        User user = new User();
+                        user.setId(Integer.parseInt(rs.getString("user_id")));
+                        user.setName(rs.getString("user_name"));
+                        user.setEmail(email);
+                        user.setPassword(senha);
+                        UsuarioLogado.verifyUser(user);
 
                         startActivity(intent);
                         finish();

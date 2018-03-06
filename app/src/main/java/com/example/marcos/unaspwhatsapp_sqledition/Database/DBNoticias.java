@@ -1,5 +1,7 @@
 package com.example.marcos.unaspwhatsapp_sqledition.Database;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.marcos.unaspwhatsapp_sqledition.UsuarioLogado;
@@ -11,10 +13,13 @@ import java.util.ArrayList;
 public class DBNoticias {
 
     private int id;
+    private int idUser;
     public String newsTitle;
     public String newsPost;
     public boolean _status;
     public String _message;
+
+
 
     public DBNoticias(){
         this.id = -1;
@@ -53,8 +58,10 @@ public class DBNoticias {
     public void salvar() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException{
         String comando = "";
         if (this.getId() == -1){
+
+
             comando = String.format("INSERT INTO news (news_title, news_message, fk_user_id) VALUES ('%s','%s',%d);",
-                    this.getNewsTitle(), this.getNewsPost(), UsuarioLogado.getUser().getId());
+                    this.getNewsTitle(), this.getNewsPost(), this.idUser);
         }else {
             comando = String.format("UPDATE news SET news_title ='%s', news_post = '%s', id_news = %d WHERE id = %d;",
                     this.getNewsTitle(), this.getNewsPost(), this.getId());
@@ -74,9 +81,22 @@ public class DBNoticias {
         return id;
     }
 
+    /** Id of News
+     *
+     * @param id only int
+     */
     public void setId(int id) {
         this.id = id;
     }
+
+    /** id User
+     *
+     * @param id
+     */
+    public void setIdUser(int id) {
+        this.idUser = id;
+    }
+
 
     public String getNewsTitle() {
         return newsTitle;

@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/UnaspWhatsapp---SQL-Edition.iml" filepath="$PROJECT_DIR$/UnaspWhatsapp---SQL-Edition.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-5.1.45-bin/mysql-connector-java-5.1.45-bin.iml" filepath="$PROJECT_DIR$/mysql-connector-java-5.1.45-bin/mysql-connector-java-5.1.45-bin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/unaspwhatsappsqledition.iml" filepath="$PROJECT_DIR$/unaspwhatsappsqledition.iml" />
+      <module fileurl="file://C:\Users\Italo\Documents\coding\Android Studio\UnaspWhatsapp---SQL-Edition\unaspwhatsappsqledition.iml" filepath="C:\Users\Italo\Documents\coding\Android Studio\UnaspWhatsapp---SQL-Edition\unaspwhatsappsqledition.iml" />
     </modules>
   </component>
 </project>

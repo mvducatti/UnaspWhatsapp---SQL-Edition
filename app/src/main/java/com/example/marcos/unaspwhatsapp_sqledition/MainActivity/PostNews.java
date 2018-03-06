@@ -1,6 +1,8 @@
 package com.example.marcos.unaspwhatsapp_sqledition.MainActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import com.example.marcos.unaspwhatsapp_sqledition.Database.DBUsuario;
 import com.example.marcos.unaspwhatsapp_sqledition.Model.Noticia;
 import com.example.marcos.unaspwhatsapp_sqledition.Model.User;
 import com.example.marcos.unaspwhatsapp_sqledition.R;
+import com.example.marcos.unaspwhatsapp_sqledition.UserSession;
 
 public class PostNews extends AppCompatActivity {
 
@@ -22,6 +25,7 @@ public class PostNews extends AppCompatActivity {
     private EditText editTextCDNewsTitle;
     private EditText editTextCDNewsPost;
     private Noticia noticia;
+    private SharedPreferences sharedPreferences;
 
     public void alert(String titulo, String txt){
         AlertDialog alertDialog = new AlertDialog.Builder(PostNews.this).create();
@@ -59,10 +63,19 @@ public class PostNews extends AppCompatActivity {
                         editTextCDNewsPost.getText().toString().equals("") || editTextCDNewsPost.getText() == null
 
                 )) {
+
+                    sharedPreferences = getSharedPreferences("Reg", Context.MODE_PRIVATE);
+                   String  uName = sharedPreferences.getString("Name", "");
+                   String uEmail = sharedPreferences.getString("Email", "");
+                   int  uIdUser = sharedPreferences.getInt("IdUser", 0);
+
                     dbNoticias.setNewsTitle(newsTitle);
                     dbNoticias.setNewsPost(newsPost);
+                    dbNoticias.setIdUser(uIdUser);
+
 
                     dbNoticias.salvar();
+
                     noticia = new Noticia();
 
 
@@ -79,5 +92,4 @@ public class PostNews extends AppCompatActivity {
             alert("Erro", e.getMessage());
         }
     }
-
 }

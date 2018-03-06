@@ -1,5 +1,6 @@
 package com.example.marcos.unaspwhatsapp_sqledition.MainActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -11,11 +12,16 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.marcos.unaspwhatsapp_sqledition.Adapter.NewsRecyclerAdapter;
 import com.example.marcos.unaspwhatsapp_sqledition.Database.DBNoticias;
 import com.example.marcos.unaspwhatsapp_sqledition.Model.Noticia;
 import com.example.marcos.unaspwhatsapp_sqledition.R;
+import com.example.marcos.unaspwhatsapp_sqledition.UserSession;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +33,39 @@ public class MainActivity extends AppCompatActivity {
     private List<Noticia> listNoticias;
     private NewsRecyclerAdapter newsRecyclerAdapter;
     private DBNoticias databaseHelper;
+    private Button btnLogout;
+    UserSession userSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        userSession = new UserSession(getApplicationContext());
 
         recyclerViewNews = findViewById(R.id.recyclerViewNews);
+        btnLogout = findViewById(R.id.btlogout);
+
+        TextView usuario = findViewById(R.id.textView5);
+
+
+        /**
+         * Olá mundo by Alciomar
+         */
+        SharedPreferences sharedPreferences = getSharedPreferences("Reg", Context.MODE_PRIVATE);
+        String  uName = sharedPreferences.getString("Name", "");
+        usuario.setText(uName.toUpperCase());
+
+
+        try {
+            btnLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    userSession.logoutUser();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         initStuff();
         getDataFromPostgres();
@@ -85,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
                     noticia.setUser_id(dbNoticias.getId());
                     noticia.setNewsTitle(dbNoticias.getNewsTitle());
                     noticia.setNewsMessage(dbNoticias.getNewsPost());
+
+
                     listNoticias.add(noticia);
                 }
                 return null;
@@ -92,13 +126,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                newsRecyclerAdapter.addItems(listNoticias);
+
                 newsRecyclerAdapter.notifyDataSetChanged();
             }
         }.execute();
     }
 
-    public void Deslogar () {
+    public void Deslogar (View view) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();

@@ -13,6 +13,7 @@ import android.content.SharedPreferences.Editor;
 
 import com.example.marcos.unaspwhatsapp_sqledition.MainActivity.Login;
 import com.example.marcos.unaspwhatsapp_sqledition.MainActivity.MainActivity;
+import com.example.marcos.unaspwhatsapp_sqledition.Model.User;
 
 public class UserSession {
     // Shared Preferences reference
@@ -39,6 +40,8 @@ public class UserSession {
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "Email";
 
+    public static final String KEY_ID = "IdUser";
+
     // password
     public static final String KEY_PASSWORD = "txtPassword";
 
@@ -50,7 +53,7 @@ public class UserSession {
     }
 
     //Create login session
-    public void createUserLoginSession(String uName, String uPassword){
+    public void createUserLoginSession(String uName, String uEmail, int uIdUser){
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);
 
@@ -58,7 +61,10 @@ public class UserSession {
         editor.putString(KEY_NAME, uName);
 
         // Storing email in preferences
-        editor.putString(KEY_EMAIL,  uPassword);
+        editor.putString(KEY_EMAIL,  uEmail);
+
+        editor.putInt(KEY_ID, uIdUser);
+
 
         // commit changes
         editor.commit();

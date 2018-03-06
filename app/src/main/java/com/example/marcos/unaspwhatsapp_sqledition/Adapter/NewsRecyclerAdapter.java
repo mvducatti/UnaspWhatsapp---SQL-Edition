@@ -66,6 +66,11 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         this.listNews.addAll(listNews);
     }
 
+//    public void clear() {
+//        listNews.clear();
+//        notifydatasetchanged();
+//    }
+
 }
 
 
