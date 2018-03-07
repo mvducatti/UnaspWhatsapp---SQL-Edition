@@ -1,10 +1,7 @@
 package com.example.marcos.unaspwhatsapp_sqledition.Database;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.marcos.unaspwhatsapp_sqledition.UsuarioLogado;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

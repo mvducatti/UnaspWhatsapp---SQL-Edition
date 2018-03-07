@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private NewsRecyclerAdapter newsRecyclerAdapter;
     private DBNoticias databaseHelper;
     private Button btnLogout;
+    private LinearLayoutManager mLayoutManager;
     UserSession userSession;
 
     @Override
@@ -91,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
             listNoticias = new ArrayList<>();
             newsRecyclerAdapter = new NewsRecyclerAdapter(listNoticias);
 
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+            mLayoutManager = new LinearLayoutManager(getApplicationContext());
+            mLayoutManager.setReverseLayout(true);
+            mLayoutManager.setStackFromEnd(true);
             recyclerViewNews.setLayoutManager(mLayoutManager);
             recyclerViewNews.setItemAnimator(new DefaultItemAnimator());
             recyclerViewNews.setHasFixedSize(true);
@@ -118,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
                     noticia.setNewsTitle(dbNoticias.getNewsTitle());
                     noticia.setNewsMessage(dbNoticias.getNewsPost());
 
-
                     listNoticias.add(noticia);
                 }
                 return null;
@@ -126,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-
                 newsRecyclerAdapter.notifyDataSetChanged();
             }
         }.execute();
