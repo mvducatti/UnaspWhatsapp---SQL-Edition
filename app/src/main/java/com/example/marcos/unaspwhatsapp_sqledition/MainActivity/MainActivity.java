@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         initStuff();
-        getDataFromPostgres();
 
         FloatingActionButton fab = findViewById(R.id.fabNews);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +79,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        getDataFromPostgres();
     }
 
 
@@ -93,8 +98,11 @@ public class MainActivity extends AppCompatActivity {
             newsRecyclerAdapter = new NewsRecyclerAdapter(listNoticias);
 
             mLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+            //Invert the view of the list
             mLayoutManager.setReverseLayout(true);
             mLayoutManager.setStackFromEnd(true);
+
             recyclerViewNews.setLayoutManager(mLayoutManager);
             recyclerViewNews.setItemAnimator(new DefaultItemAnimator());
             recyclerViewNews.setHasFixedSize(true);
@@ -129,16 +137,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 newsRecyclerAdapter.notifyDataSetChanged();
+
+                //Scroll ot position 0, but use size -1 to go to the "top" of the list
+                recyclerViewNews.getLayoutManager().scrollToPosition(listNoticias.size()-1);
             }
         }.execute();
-    }
-
-    public void Deslogar (View view) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
-        editor.commit();
-        Intent i = new Intent(MainActivity.this,Login.class);
-        startActivity(i);
     }
 }
