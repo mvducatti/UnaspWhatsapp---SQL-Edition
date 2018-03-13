@@ -7,6 +7,7 @@ package com.example.marcos.unaspwhatsapp_sqledition.Model;
 public class User {
 
     private int id;
+    private String userphoto;
     private String name;
     private String email;
     private String password;
@@ -17,6 +18,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserphoto() {
+        return userphoto;
+    }
+
+    public void setUserphoto(String userphoto) {
+        this.userphoto = userphoto;
     }
 
     public String getName() {

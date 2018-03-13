@@ -1,15 +1,10 @@
 package com.example.marcos.unaspwhatsapp_sqledition.Database;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
-
-import com.example.marcos.unaspwhatsapp_sqledition.Model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
@@ -17,6 +12,7 @@ import javax.security.auth.login.LoginException;
 public class DBUsuario {
 
     private int id;
+    private byte photo;
     private String email;
     private String senha;
     private String nome;
@@ -47,6 +43,7 @@ public class DBUsuario {
                     DBUsuario obj = new DBUsuario();
 
                     obj.setId(resultSet.getInt("user_id"));
+                    obj.setPhoto(resultSet.getByte("user_photo"));
                     obj.setNome(resultSet.getString("user_name"));
                     obj.setEmail(resultSet.getString("user_email"));
                     obj.setSenha(resultSet.getString("user_password"));
@@ -64,11 +61,11 @@ public class DBUsuario {
     public void salvar(String s) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, LoginException {
         String comando = "";
         if (this.getId() == -1) {
-            comando = String.format("INSERT INTO newuser (user_name,user_email,user_password) VALUES ('%s','%s','%s');",
-                    this.getNome(), this.getEmail(), this.getSenha());
+            comando = String.format("INSERT INTO newuser (user_photo, user_name,user_email,user_password) VALUES (%i,'%s','%s','%s');",
+                    this.getPhoto(), this.getNome(), this.getEmail(), this.getSenha());
         } else {
-            comando = String.format("UPDATE newuser SET nome ='%s', login ='%s', senha = '%s', WHERE id = %d;",
-                    this.getNome(), this.getEmail(), this.getSenha(), this.getId());
+            comando = String.format("UPDATE newuser SET photo = '%i', nome ='%s', login ='%s', senha = '%s', WHERE id = %d;",
+                    this.getPhoto(), this.getNome(), this.getEmail(), this.getSenha(), this.getId());
         }
         DB db = new DB();
         db.update(comando);
@@ -78,6 +75,14 @@ public class DBUsuario {
         String comando = String.format("DELETE FROM newuser WHERE user_id = %d;", this.getId());
         DB db = new DB();
         db.execute(comando);
+    }
+
+    public byte getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte photo) {
+        this.photo = photo;
     }
 
     public int getId() {
