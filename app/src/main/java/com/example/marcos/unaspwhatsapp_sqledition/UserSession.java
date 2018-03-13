@@ -1,8 +1,5 @@
 package com.example.marcos.unaspwhatsapp_sqledition;
 
-/**
- * Created by Italo on 07/03/2018.
- */
 
 import java.util.HashMap;
 
@@ -16,33 +13,19 @@ import com.example.marcos.unaspwhatsapp_sqledition.MainActivity.MainActivity;
 import com.example.marcos.unaspwhatsapp_sqledition.Model.User;
 
 public class UserSession {
-    // Shared Preferences reference
+
     SharedPreferences pref;
-
-    // Editor reference for Shared preferences
     Editor editor;
-
-    // Context
     Context _context;
 
     // Shared preferences mode
     int PRIVATE_MODE = 0;
 
-    // Shared preferences file name
     public static final String PREFER_NAME = "Reg";
-
-    // All Shared Preferences Keys
     public static final String IS_USER_LOGIN = "IsUserLoggedIn";
-
-    // User name (make variable public to access from outside)
     public static final String KEY_NAME = "Name";
-
-    // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "Email";
-
     public static final String KEY_ID = "IdUser";
-
-    // password
     public static final String KEY_PASSWORD = "txtPassword";
 
     // Constructor

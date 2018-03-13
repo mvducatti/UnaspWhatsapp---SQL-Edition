@@ -21,10 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity.CadastrarUsuario" />
-        <activity
-            android:name=".Main2Activity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme" />
         <activity android:name=".MainActivity.PostNews" />
         <activity android:name=".MainActivity.MainActivity" />
         <activity android:name=".MainActivity.Login"></activity>
