@@ -11,11 +11,12 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import com.example.marcos.unaspwhatsapp_sqledition.Database.DBUsuario;
+import com.example.marcos.unaspwhatsapp_sqledition.PHP.DBUsuario;
 import com.example.marcos.unaspwhatsapp_sqledition.Model.User;
 import com.example.marcos.unaspwhatsapp_sqledition.R;
 
@@ -27,18 +28,13 @@ import java.io.InputStream;
 public class CadastrarUsuario extends AppCompatActivity {
 
     private DBUsuario dbUsuario;
-    private EditText editTextCDEmail;
-    private EditText editTextCDSenha;
-    private EditText editTextCDNome;
-    private EditText PIN;
+    private EditText editTextCDEmail, editTextCDSenha, editTextCDNome;
     private ImageButton saveProfilePictureButton;
     private String image_str;
-    private ImageButton savePhotoFromCamera;
     private User user;
 
     //YOU CAN EDIT THIS TO WHATEVER YOU WANT
     private static final int ACTIVITY_SELECT_IMAGE = 1;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     public void alert(String titulo, String txt){
         AlertDialog alertDialog = new AlertDialog.Builder(CadastrarUsuario.this).create();
@@ -61,28 +57,18 @@ public class CadastrarUsuario extends AppCompatActivity {
         dbUsuario = new DBUsuario();
 
         saveProfilePictureButton = findViewById(R.id.imageProfileButton);
-        savePhotoFromCamera = findViewById(R.id.btnTakePicture);
 
         editTextCDNome = findViewById(R.id.editTextCDNome);
         editTextCDEmail = findViewById(R.id.editTextCDEmail);
         editTextCDSenha = findViewById(R.id.editTextCDSenha);
-        PIN = findViewById(R.id.editTextPIN);
         editTextCDNome.setText("marcos");
         editTextCDEmail.setText("mvducatti");
         editTextCDSenha.setText("roketpower");
-        PIN.setText("3705");
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-
-//        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            savePhotoFromCamera.setImageBitmap(imageBitmap);
-//        }
 
         switch(requestCode) {
             case ACTIVITY_SELECT_IMAGE:
@@ -124,24 +110,30 @@ public class CadastrarUsuario extends AppCompatActivity {
     public void salvar(View view) {
         try {
 
-            if (PIN.getText().toString().equals("3705")) {
-
                 String nomeusuario = editTextCDNome.getText().toString();
                 String loginusuario = editTextCDEmail.getText().toString();
                 String senhausuario = editTextCDSenha.getText().toString();
 
-                if (!(editTextCDNome.getText().toString().equals("") || editTextCDNome.getText() == null ||
-                        editTextCDEmail.getText().toString().equals("") || editTextCDEmail.getText() == null ||
-                        editTextCDSenha.getText().toString().equals("") || editTextCDSenha.getText() == null
+            if (TextUtils.isEmpty(nomeusuario)) {
+                editTextCDNome.setError("Please enter username");
+                return;
+            }
 
-                )) {
+            if (TextUtils.isEmpty(loginusuario)) {
+                editTextCDEmail.setError("Enter a password");
+                return;
+            }
+
+            if (TextUtils.isEmpty(senhausuario)) {
+                editTextCDSenha.setError("Enter a password");
+                return;
+            }
 
                     dbUsuario.setPhoto(Byte.parseByte(image_str));
                     dbUsuario.setNome(nomeusuario);
                     dbUsuario.setEmail(loginusuario);
                     dbUsuario.setSenha(senhausuario);
 
-                    dbUsuario.salvar(PIN.getText().toString());
                     user = new User();
 
 
@@ -151,26 +143,13 @@ public class CadastrarUsuario extends AppCompatActivity {
                     editTextCDNome.setText("");
                     editTextCDEmail.setText("");
                     editTextCDSenha.setText("");
-                    PIN.setText("");
-                }
-            } else {
-                PIN.setError("PIN Incorreto");
-            }
+
         }
         catch (Exception e){
             alert("ERROUUU", e.getMessage());
         }
     }
 
-
-
-    public void dispatchTakePictureIntent(View view) {
-
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
 
     public void saveImage (View view) {
 

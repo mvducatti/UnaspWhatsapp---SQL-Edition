@@ -1,4 +1,4 @@
-package com.example.marcos.unaspwhatsapp_sqledition.Database;
+package com.example.marcos.unaspwhatsapp_sqledition.PHP;
 
 import android.support.v7.app.AppCompatActivity;
 

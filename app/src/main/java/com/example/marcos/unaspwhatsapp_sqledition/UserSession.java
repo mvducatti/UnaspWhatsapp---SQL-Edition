@@ -10,7 +10,6 @@ import android.content.SharedPreferences.Editor;
 
 import com.example.marcos.unaspwhatsapp_sqledition.MainActivity.Login;
 import com.example.marcos.unaspwhatsapp_sqledition.MainActivity.MainActivity;
-import com.example.marcos.unaspwhatsapp_sqledition.Model.User;
 
 public class UserSession {
 

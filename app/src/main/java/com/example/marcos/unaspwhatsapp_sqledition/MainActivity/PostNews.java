@@ -2,7 +2,6 @@ package com.example.marcos.unaspwhatsapp_sqledition.MainActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,12 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.marcos.unaspwhatsapp_sqledition.Database.DBNoticias;
-import com.example.marcos.unaspwhatsapp_sqledition.Database.DBUsuario;
+import com.example.marcos.unaspwhatsapp_sqledition.PHP.DBNoticias;
 import com.example.marcos.unaspwhatsapp_sqledition.Model.Noticia;
-import com.example.marcos.unaspwhatsapp_sqledition.Model.User;
 import com.example.marcos.unaspwhatsapp_sqledition.R;
-import com.example.marcos.unaspwhatsapp_sqledition.UserSession;
 
 public class PostNews extends AppCompatActivity {
 

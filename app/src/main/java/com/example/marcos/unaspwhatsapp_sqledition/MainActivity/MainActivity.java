@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,12 +15,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.marcos.unaspwhatsapp_sqledition.Adapter.NewsRecyclerAdapter;
-import com.example.marcos.unaspwhatsapp_sqledition.Database.DBNoticias;
+import com.example.marcos.unaspwhatsapp_sqledition.PHP.DBNoticias;
 import com.example.marcos.unaspwhatsapp_sqledition.Model.Noticia;
 import com.example.marcos.unaspwhatsapp_sqledition.R;
 import com.example.marcos.unaspwhatsapp_sqledition.UserSession;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;

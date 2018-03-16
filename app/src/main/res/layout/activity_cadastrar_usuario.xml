@@ -9,14 +9,13 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="136dp"
-        android:layout_height="101dp"
+        android:layout_width="236dp"
+        android:layout_height="206dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="@+id/guideline5"
         app:srcCompat="@drawable/noticias" />
 
@@ -25,113 +24,73 @@
         android:id="@+id/editTextCDNome"
         android:layout_width="266dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:hint="Nome"
         android:inputType="text"
         android:maxLines="1"
         android:textColor="@android:color/black"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/imageProfileButton" />
 
     <android.support.design.widget.TextInputEditText
         android:id="@+id/editTextCDEmail"
         android:layout_width="266dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:hint="Email"
         android:inputType="text"
         android:maxLines="1"
         android:textColor="@android:color/black"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/editTextCDNome" />
 
     <android.support.design.widget.TextInputEditText
         android:id="@+id/editTextCDSenha"
         android:layout_width="266dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:hint="Senha"
         android:inputType="textPassword"
         android:maxLines="1"
         android:textColor="@android:color/black"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/editTextCDEmail" />
-
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/editTextCDConfirmarSenha"
-        android:layout_width="266dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="Confirmar Senha"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:textColor="@android:color/black"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCDSenha" />
-
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/editTextPIN"
-        android:layout_width="266dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:hint="Código de Autenticação"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:textColor="@android:color/black"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCDConfirmarSenha" />
 
     <Button
         android:id="@+id/btnCDCadastrar"
-        android:layout_width="100dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:background="@color/colorPrimary"
         android:onClick="salvar"
         android:text="CADASTRAR"
         android:textColor="@color/cardview_light_background"
-        app:layout_constraintEnd_toStartOf="@+id/btnCDCancel"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPIN" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCDSenha" />
 
-    <Button
-        android:id="@+id/btnCDCancel"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/txtViewRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="12dp"
         android:onClick="cdCancelar"
-        android:text="cancelar"
-        android:textColor="@color/cardview_light_background"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toEndOf="@+id/btnCDCadastrar"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPIN" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.13" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.87" />
+        android:text="Já tem usuário? Faça o login."
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/btnCDCadastrar" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline5"

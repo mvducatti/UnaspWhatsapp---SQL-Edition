@@ -3,7 +3,9 @@
     package="com.example.marcos.unaspwhatsapp_sqledition">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <application
@@ -23,7 +25,8 @@
         <activity android:name=".MainActivity.CadastrarUsuario" />
         <activity android:name=".MainActivity.PostNews" />
         <activity android:name=".MainActivity.MainActivity" />
-        <activity android:name=".MainActivity.Login"></activity>
+        <activity android:name=".MainActivity.Login" />
+        <activity android:name=".MainActivity.SignUpActivity"></activity>
     </application>
 
 </manifest>
